@@ -19,7 +19,6 @@ BruteForcer.prototype.newChar = function () {
 };
 
 BruteForcer.prototype.setCharTypeActived = function (charTypeActived = ['normal']) {
-    console.log(charTypeActived);
     this.charTypeActived = charTypeActived;
     return this;
 };
@@ -30,11 +29,23 @@ BruteForcer.prototype.setDomContainer = function (domElement = '#dom-container')
 };
 
 BruteForcer.prototype.getCharMinified = function () {
-    var charMinified;
+    var charMinified = '';
     for (var keyCharType in this.charTypeActived) {
-        charMinified += this.charType[this.charTypeActived[keyCharType]];
+        var string = this.charType[this.charTypeActived[keyCharType]];
+        if (string) {
+            charMinified += string;
+        }
     }
+    this.charCanbe = charMinified;
     return charMinified;
 };
+
+BruteForcer.prototype.findPossibly = function () {
+    var probality = 0;
+    for (var i = 1; i <= this.nbChar; i++) {
+        probality += Math.pow(this.charCanbe.length, i);
+    }
+    return probality;
+}
 
 export default BruteForcer

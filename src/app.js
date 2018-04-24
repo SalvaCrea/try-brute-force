@@ -10,24 +10,26 @@ var app = {
             uppercase: false,
             numeric: false
         },
-        bruteForcer: {}
+        bruteForcer: {},
+        possibly: 0
     },
     methods: {
         start: function() {
             let self = this;
-
             this.bruteForcer.setDomContainer('#password-finded');
-
+        },
+        getCharMinified: function () {
+            return this.bruteForcer.getCharMinified();
+        },
+        change: function () {
+            var self = this;
             var charType = [];
             _.forEach(this.charType, function(value, key) {
                 if (self.charType[key] === true) charType.push(key);
             });
+            this.bruteForcer.nbChar = this.nbChar;
             this.bruteForcer.setCharTypeActived(charType);
-
-        },
-        getCharMinified: function () {
-            console.log(this.bruteForcer);
-            return this.bruteForcer.getCharMinified();
+            this.possibly = this.bruteForcer.findPossibly();
         }
     },
     mounted: function() {
