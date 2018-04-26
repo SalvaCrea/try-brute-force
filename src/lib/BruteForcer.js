@@ -1,15 +1,17 @@
 var BruteForcer = function () {
-    this.nbChar = 0;
-    this.maxChar = 0;
-    this.charCurrent = 0;
-    this.charCanbe = '';
     this.charType = {
         normal: 'abcdefghijkmnopqrstxyzw',
         uppercase: 'ABCDEFGHIJKMNOPQRSTXYZW',
         numeric : '0123456789'
-    },
+    };
+
+    this.nbChar = 0;
+    this.charList = '';
+
     this.charTypeActived = ['normal'];
     this.domContainer = '';
+    this.start = false;
+    this.currentPassword = [];
 }
 
 BruteForcer.prototype.newChar = function () {
@@ -36,16 +38,27 @@ BruteForcer.prototype.getCharMinified = function () {
             charMinified += string;
         }
     }
-    this.charCanbe = charMinified;
+    this.charList = charMinified;
     return charMinified;
 };
 
 BruteForcer.prototype.findPossibly = function () {
     var probality = 0;
     for (var i = 1; i <= this.nbChar; i++) {
-        probality += Math.pow(this.charCanbe.length, i);
+        probality += Math.pow(this.charList.length, i);
     }
     return probality;
+}
+
+BruteForcer.prototype.start = function () {
+    this.start = true;
+}
+
+BruteForcer.prototype.loop = function () {
+    var finish = false;
+    while (!finish && start) {
+
+    }
 }
 
 export default BruteForcer

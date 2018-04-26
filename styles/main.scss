@@ -1,0 +1,19 @@
+body {
+    background: #f6f6f6;
+    font-family: "Open Sans"
+}
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 1px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+hr {
+    border-top: 1px #ccc solid;
+    height: 1px;
+    width: 100%;
+}
+.password-finded {
+    max-height: 500px;
+    overflow-y: scroll;
+}
