@@ -4,7 +4,7 @@ import _ from '/node_modules/lodash/lodash.min.js'
 var app = {
     el: '#app',
     data: {
-        nbChar: 1,
+        nbChar: 5,
         charType: {
             normal: true,
             uppercase: false,
@@ -17,6 +17,7 @@ var app = {
         start: function() {
             let self = this;
             this.bruteForcer.setDomContainer('#password-finded');
+            this.bruteForcer.ready();
         },
         getCharMinified: function () {
             return this.bruteForcer.getCharMinified();

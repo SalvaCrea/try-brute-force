@@ -1,17 +1,19 @@
 var BruteForcer = function () {
     this.charType = {
-        normal: 'abcdefghijkmnopqrstxyzw',
-        uppercase: 'ABCDEFGHIJKMNOPQRSTXYZW',
+        normal: 'azertyuiopqsdfghjklmwxcvbn',
+        uppercase: 'AZERTYUIOPQSDFGHJKLMWXCVBN',
         numeric : '0123456789'
     };
 
     this.nbChar = 0;
+    this.currentChar = 0;
     this.charList = '';
+    this.currentPassword = [];
+    this.currentPaddwordString = '';
 
     this.charTypeActived = ['normal'];
     this.domContainer = '';
     this.start = false;
-    this.currentPassword = [];
 }
 
 BruteForcer.prototype.newChar = function () {
@@ -50,14 +52,33 @@ BruteForcer.prototype.findPossibly = function () {
     return probality;
 }
 
-BruteForcer.prototype.start = function () {
+BruteForcer.prototype.ready = function () {
     this.start = true;
+    this.addChar();
+    this.loop();
+}
+
+BruteForcer.prototype.addChar = function () {
+    this.currentPassword.push(this.newChar());
+}
+
+BruteForcer.prototype.convertPassword = function () {
+    var self = this;
+    this.currentPaddwordString = '';
+    this.currentPassword.forEach(function(currentChar){
+        this.currentPaddwordString += this.charList[currentChar.position]
+    });
+    console.log(this.currentPaddwordString);
+    this.domContainer.innerHtml += this.currentPaddwordString;
 }
 
 BruteForcer.prototype.loop = function () {
     var finish = false;
-    while (!finish && start) {
-
+    while (!finish && this.start) {
+        this.convertPassword();
+        if (this.currentPassword[this.currentChar].position < this.nbChar) {
+            this.currentPassword[this.currentChar].position++;
+        }
     }
 }
 
